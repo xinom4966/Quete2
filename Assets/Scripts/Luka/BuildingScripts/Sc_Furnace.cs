@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sc_Furnace : Sc_Buildings
 {
-    public override Sc_Ressource BurnMaterial()
+    protected override Sc_Ressource BurnMaterial()
     {
         return null;
     }
