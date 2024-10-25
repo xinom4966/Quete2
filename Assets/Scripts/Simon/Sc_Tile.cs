@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class Tile
+public class Sc_Tile
 {
     public Vector2 pos { get; private set; } = Vector2.zero;
-    public Entity entity;
+    public Sc_Entity entity;
     public (int, int) gridPos;
 
-    public Tile(Vector2 p_pos, (int, int) p_gridPos)
+    public Sc_Tile(Vector2 p_pos, (int, int) p_gridPos)
     {
         this.pos = p_pos;
         this.gridPos = p_gridPos;
     }
 
-    private void SetEntity(Entity p_entity)
+    private void SetEntity(Sc_Entity p_entity)
     {
         if (!HasEntity())
         {
@@ -20,7 +20,7 @@ public class Tile
         }
     }
 
-    private void DeleteEntity(Entity p_entity)
+    private void DeleteEntity(Sc_Entity p_entity)
     {
         this.entity = null;
     }

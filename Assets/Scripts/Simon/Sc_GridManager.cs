@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class Sc_GridManager : MonoBehaviour
 {
-    private List<List<Tile>> _grid = new List<List<Tile>>();
+    private List<List<Sc_Tile>> _grid = new List<List<Sc_Tile>>();
     [SerializeField] private int _gridWidth;
     [SerializeField] private int _gridHeight;
     [SerializeField] private int _tileSpacement;
@@ -21,13 +21,13 @@ public class GridManager : MonoBehaviour
             _grid.Add(new());
             for (int j = 0; j < _gridHeight; j++)
             {
-                Tile tile = new(new Vector2(_gridCenter.position.x + (i - (_gridWidth - 1) / 2) * _tileSpacement, _gridCenter.position.y + (j - (_gridHeight - 1) / 2) * _tileSpacement), (i, j));
+                Sc_Tile tile = new(new Vector2(_gridCenter.position.x + (i - (_gridWidth - 1) / 2) * _tileSpacement, _gridCenter.position.y + (j - (_gridHeight - 1) / 2) * _tileSpacement), (i, j));
                 _grid[i].Add(tile);
             }
         }
     }
 
-    private Tile GetTile(int p_x, int p_y)
+    private Sc_Tile GetTile(int p_x, int p_y)
     {
         if (p_x < _grid.Count && p_y < _grid[0].Count && p_x >= 0 && p_y >= 0)
         {
@@ -39,9 +39,9 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public Tile GetClosestTile(Vector3 p_position)
+    public Sc_Tile GetClosestTile(Vector3 p_position)
     {
-        Tile closestTile = null;
+        Sc_Tile closestTile = null;
         float distanceMinimum = float.MaxValue;
 
         for (int i = 0; i < _gridWidth; i++)
@@ -58,9 +58,9 @@ public class GridManager : MonoBehaviour
         return closestTile;
     }
 
-    public List<Tile> GetNeighbors(Tile p_testedTile)
+    public List<Sc_Tile> GetNeighbors(Sc_Tile p_testedTile)
     {
-        List<Tile> neighbors = new();
+        List<Sc_Tile> neighbors = new();
 
         var front = GetTile(p_testedTile.gridPos.Item1, p_testedTile.gridPos.Item2 + 1);
         var back = GetTile(p_testedTile.gridPos.Item1, p_testedTile.gridPos.Item2 - 1);
@@ -80,7 +80,7 @@ public class GridManager : MonoBehaviour
         Gizmos.color = Color.red;
         for (int i = 0; i < _grid.Count; i++)
         {
-            foreach (Tile tile in _grid[i])
+            foreach (Sc_Tile tile in _grid[i])
             {
                 Gizmos.DrawSphere(tile.pos, 0.1f);
             }
