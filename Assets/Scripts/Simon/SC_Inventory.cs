@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SC_Inventory<T> : MonoBehaviour where T : class
 {
-    //private Dictionary<int, T> _storage = new Dictionary<int, T>();
     private List<List<Sc_InventoryTile<T>>> _storageGrid;
 
     private void CreateStorageGrid(int p_sizeLines, int p_sizeColumns)
@@ -25,13 +24,16 @@ public class SC_Inventory<T> : MonoBehaviour where T : class
         {
             for (int j=0; j < _storageGrid[i].Count; j++)
             {
-                
+                if (_storageGrid[i][j].IsEmpty())
+                {
+                    _storageGrid[i][j].AddObject(p_objectToAdd);
+                }
             }
         }
     }
 
-    private void RemoveFromStorage()
+    private void RemoveFromStorage(int p_indLine, int p_indColumns, int p_quantityToRemove)
     {
-
+        _storageGrid[p_indLine][p_indColumns].RemoveObjects(p_quantityToRemove);
     }
 }
