@@ -20,6 +20,14 @@ public class Sc_BuildingPlacer : MonoBehaviour
     {
         if (_buildingPrefab != null)
         {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Destroy(_toBuild);
+                _toBuild = null;
+                _buildingPrefab = null;
+                return;
+            }
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 _toBuild.SetActive(false);
@@ -29,15 +37,23 @@ public class Sc_BuildingPlacer : MonoBehaviour
                 _toBuild.SetActive(true);
             }
 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _toBuild.transform.Rotate(Vector3.forward, 90);
+            }
+
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             _toBuild.transform.position = new Vector3(_mousePos.x, _mousePos.y, 0);
             if (Input.GetMouseButtonDown(0))
             {
                 Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
-                handler.SetPlacementState(PlacementState.Fixed);
+                if (handler.hasValidPlacement)
+                {
+                    handler.SetPlacementState(PlacementState.Fixed);
 
-                _buildingPrefab = null;
-                _toBuild = null;
+                    _buildingPrefab = null;
+                    _toBuild = null;
+                }
             }
         }
     }
@@ -58,7 +74,7 @@ public class Sc_BuildingPlacer : MonoBehaviour
         _toBuild.SetActive(false);
 
         Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
-        handler._isFixed = false;
+        handler.isFixed = false;
         handler.SetPlacementState(PlacementState.Valid);
     }
 }

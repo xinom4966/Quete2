@@ -16,14 +16,33 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     [SerializeField] private Material _invalidPlacementMaterial;
     [SerializeField] private MeshRenderer[] _meshComponents;
     private Dictionary<MeshRenderer, List<Material>> _initialMaterials;
-    private bool _hasValidPlacement;
-    public bool _isFixed;
+    public bool hasValidPlacement;
+    public bool isFixed;
+    private int _obstacleNumber;
 
     private void Awake()
     {
-        _hasValidPlacement = true;
-        _isFixed = true;
+        hasValidPlacement = true;
+        isFixed = true;
+        _obstacleNumber = 0;
         InitializeMaterial();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isFixed) { return; }
+        _obstacleNumber++;
+        SetPlacementState(PlacementState.Invalid);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (isFixed) { return; }
+        _obstacleNumber--;
+        if (_obstacleNumber <= 0)
+        {
+            SetPlacementState(PlacementState.Valid);
+        }
     }
 
 #if UNITY_EDITOR
@@ -53,16 +72,16 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     {
         if (p_state == PlacementState.Fixed)
         {
-            _isFixed = true;
-            _hasValidPlacement = true;
+            isFixed = true;
+            hasValidPlacement = true;
         }
         else if (p_state == PlacementState.Valid)
         {
-            _hasValidPlacement = true;
+            hasValidPlacement = true;
         }
         else
         {
-            _hasValidPlacement = false;
+            hasValidPlacement = false;
         }
         SetMaterial(p_state);
     }
