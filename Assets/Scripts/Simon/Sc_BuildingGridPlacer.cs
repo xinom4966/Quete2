@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Sc_BuildingPlacer : MonoBehaviour
+public class Sc_BuildingGridPlacer : Sc_BuildingPlacer
 {
-    protected GameObject _buildingPrefab;
-    protected GameObject _toBuild;
-    protected Camera _camera;
-    protected Vector3 _mousePos;
-
-    private void Awake()
-    {
-        _buildingPrefab = null;
-        _camera = Camera.main;
-    }
+    [SerializeField] private Sc_GridManager _gridManager;
 
     private void Update()
     {
@@ -43,7 +34,7 @@ public class Sc_BuildingPlacer : MonoBehaviour
             }
 
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-            _toBuild.transform.position = new Vector3(_mousePos.x, _mousePos.y, 0);
+            _toBuild.transform.position = _gridManager.GetClosestTile(_mousePos).pos;
             if (Input.GetMouseButtonDown(0))
             {
                 Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
@@ -56,26 +47,5 @@ public class Sc_BuildingPlacer : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SetBuildingPrefab(GameObject p_prefab)
-    {
-        _buildingPrefab = p_prefab;
-        PrepareBuilding();
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-
-    protected virtual void PrepareBuilding()
-    {
-        if (_toBuild)
-        {
-            Destroy( _toBuild );
-        }
-        _toBuild = Instantiate(_buildingPrefab);
-        _toBuild.SetActive(false);
-
-        Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
-        handler.isFixed = false;
-        handler.SetPlacementState(PlacementState.Valid);
     }
 }

@@ -12,10 +12,10 @@ public enum PlacementState
 
 public class Sc_BuildingPlacementHandler : MonoBehaviour
 {
-    [SerializeField] private Material _validPlacementMaterial;
-    [SerializeField] private Material _invalidPlacementMaterial;
-    [SerializeField] private MeshRenderer[] _meshComponents;
-    private Dictionary<MeshRenderer, List<Material>> _initialMaterials;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Color _validColor;
+    [SerializeField] private Color _invalidColor;
+    private Color _fixedColor;
     public bool hasValidPlacement;
     public bool isFixed;
     private int _obstacleNumber;
@@ -25,7 +25,7 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         hasValidPlacement = true;
         isFixed = true;
         _obstacleNumber = 0;
-        InitializeMaterial();
+        _fixedColor = _spriteRenderer.color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,29 +45,6 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        InitializeMaterial();
-    }
-#endif
-
-    private void InitializeMaterial()
-    {
-        if (_initialMaterials == null)
-            _initialMaterials = new Dictionary<MeshRenderer, List<Material>>();
-        if (_initialMaterials.Count > 0)
-        {
-            foreach (var l in _initialMaterials) l.Value.Clear();
-            _initialMaterials.Clear();
-        }
-
-        foreach (MeshRenderer r in _meshComponents)
-        {
-            _initialMaterials[r] = new List<Material>(r.sharedMaterials);
-        }
-    }
-
     public void SetPlacementState(PlacementState p_state)
     {
         if (p_state == PlacementState.Fixed)
@@ -83,30 +60,25 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         {
             hasValidPlacement = false;
         }
-        SetMaterial(p_state);
+        SetColor(p_state);
     }
 
-    private void SetMaterial(PlacementState p_state)
+    private void SetColor(PlacementState p_state)
     {
-        if (p_state == PlacementState.Fixed)
+        switch (p_state)
         {
-            foreach (MeshRenderer r in _meshComponents)
-                r.sharedMaterials = _initialMaterials[r].ToArray();
-        }
-        else
-        {
-            Material matToApply = p_state == PlacementState.Valid
-                ? _validPlacementMaterial : _invalidPlacementMaterial;
-
-            Material[] m; int nMaterials;
-            foreach (MeshRenderer r in _meshComponents)
-            {
-                nMaterials = _initialMaterials[r].Count;
-                m = new Material[nMaterials];
-                for (int i = 0; i < nMaterials; i++)
-                    m[i] = matToApply;
-                r.sharedMaterials = m;
-            }
+            case PlacementState.Fixed:
+                _spriteRenderer.color = _fixedColor;
+                break;
+            case PlacementState.Valid:
+                _spriteRenderer.color = _validColor;
+                break;
+            case PlacementState.Invalid:
+                _spriteRenderer.color = _invalidColor;
+                break;
+            default:
+                _spriteRenderer.color = _fixedColor;
+                break;
         }
     }
 }

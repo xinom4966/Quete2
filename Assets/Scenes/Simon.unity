@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 343014413}
   - component: {fileID: 343014412}
   - component: {fileID: 343014415}
+  - component: {fileID: 343014416}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -282,6 +283,41 @@ MonoBehaviour:
   m_DefaultActionMap: Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!70 &343014416
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343014411}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
 --- !u!1 &454669529
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,8 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b102955cc418b4a8f669d8777afa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 10
-  _gridHeight: 10
+  _gridWidth: 100
+  _gridHeight: 100
   _tileSpacement: 1
   _gridCenter: {fileID: 1517724015}
 --- !u!4 &1517724015
@@ -682,7 +718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756359434}
-  - component: {fileID: 1756359433}
+  - component: {fileID: 1756359435}
   m_Layer: 0
   m_Name: BuildingManager
   m_TagString: Untagged
@@ -690,18 +726,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1756359433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756359432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7094e9c068029e46aca17e457f29398, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1756359434
 Transform:
   m_ObjectHideFlags: 0
@@ -717,6 +741,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1756359435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756359432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85955f4d990e0534185ed6f5e1dc3720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridManager: {fileID: 1517724014}
 --- !u!1 &1757358444
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,12 +905,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756359433}
+      - m_Target: {fileID: 1756359435}
         m_TargetAssemblyTypeName: Sc_BuildingPlacer, Assembly-CSharp
         m_MethodName: SetBuildingPrefab
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 6993028880765488273, guid: efacb63616f044047a3d1bf5b3812921, type: 3}
+          m_ObjectArgument: {fileID: 8151885639505545309, guid: efacb63616f044047a3d1bf5b3812921, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
