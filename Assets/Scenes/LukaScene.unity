@@ -390,8 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41dd0321c139f3e4ba386b6e02a927b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  _player: {fileID: 0}
+  _camera: {fileID: 856402540}
+  _player: {fileID: 600291193}
 --- !u!1 &856402538
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,10 +513,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b102955cc418b4a8f669d8777afa35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridWidth: 25
-  _gridHeight: 25
+  _gridWidth: 250
+  _gridHeight: 250
   _tileSpacement: 0.75
   _gridCenter: {fileID: 953053000}
+  _ressourceGeneratorPrefab: {fileID: 5093099869942008315, guid: 5f594a868c658e7409c37d5265fd92c2, type: 3}
+  _chancesToSpawnRessource: 0.001
 --- !u!4 &953053000
 Transform:
   m_ObjectHideFlags: 0

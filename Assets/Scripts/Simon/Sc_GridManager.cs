@@ -8,6 +8,9 @@ public class Sc_GridManager : MonoBehaviour
     [SerializeField] private int _gridHeight;
     [SerializeField] private float _tileSpacement;
     [SerializeField] private Transform _gridCenter;
+    [SerializeField] private GameObject _ressourceGeneratorPrefab;
+    private GameObject _ressourceGenerator;
+    [SerializeField] private float _chancesToSpawnRessource;
 
     private void Start()
     {
@@ -23,6 +26,10 @@ public class Sc_GridManager : MonoBehaviour
             {
                 Sc_Tile<Sc_Ressource> tile = new(new Vector2(_gridCenter.position.x + (i - (_gridWidth - 1) / 2) * _tileSpacement, _gridCenter.position.y + (j - (_gridHeight - 1) / 2) * _tileSpacement), (i, j));
                 _grid[i].Add(tile);
+                if (Random.Range(0, 1000) < _chancesToSpawnRessource)
+                {
+                    _ressourceGenerator = Instantiate(_ressourceGeneratorPrefab, tile.pos, Quaternion.identity);
+                }
             }
         }
     }
