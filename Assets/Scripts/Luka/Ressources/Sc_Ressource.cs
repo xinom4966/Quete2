@@ -1,9 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewRessource", menuName = "Data/New Ressource")]
-[System.Serializable]
-
-public class Sc_Ressource : ScriptableObject
+public class Sc_Ressource : MonoBehaviour
 {
     [SerializeField] protected string _ressourceName;
     [SerializeField] protected int _ressourceId;

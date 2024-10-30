@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Sc_PlayerMouvement : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private float _speed = 5f;
+    private float _speed = 30f;
     private Vector2 _position = new Vector2();
 
     private void Awake()
