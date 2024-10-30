@@ -694,6 +694,8 @@ MonoBehaviour:
   _gridHeight: 100
   _tileSpacement: 1
   _gridCenter: {fileID: 1517724015}
+  _ressourceGeneratorPrefab: {fileID: 5093099869942008315, guid: 5f594a868c658e7409c37d5265fd92c2, type: 3}
+  _chancesToSpawnRessource: 1
 --- !u!4 &1517724015
 Transform:
   m_ObjectHideFlags: 0

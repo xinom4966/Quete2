@@ -15,7 +15,6 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private void Update()
     {
         Move();
-        PlaceBuildings();
     }
 
     public void Mouvement(InputAction.CallbackContext p_ctx)
@@ -38,11 +37,6 @@ public class Sc_PlayerMouvement : MonoBehaviour
         float step = _speed * Time.deltaTime;
         Vector2 newPos = (Vector2)transform.position + _position;
         transform.position = Vector2.MoveTowards(transform.position, newPos, step);
-
-    }
-
-    private void PlaceBuildings()
-    {
 
     }
 }
