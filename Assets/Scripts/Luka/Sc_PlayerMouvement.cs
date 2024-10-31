@@ -6,10 +6,17 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private Rigidbody2D _rb;
     private float _speed = 30f;
     private Vector2 _position = new Vector2();
+    [SerializeField] private GameObject _inventoryDisplay;
+    [SerializeField] private int _inventorySizeX;
+    [SerializeField] private int _inventorySizeY;
+    private Sc_Inventory _playerInventory;
+    private Sc_InventoryDisplay _inventoryDisplayScript;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _playerInventory = new Sc_Inventory(_inventorySizeX, _inventorySizeY);
+        _inventoryDisplayScript = _inventoryDisplay.GetComponent<Sc_InventoryDisplay>();
     }
 
     private void Update()
@@ -33,10 +40,15 @@ public class Sc_PlayerMouvement : MonoBehaviour
 
     private void Move()
     {
-        //_rb.AddForce(new Vector2(_position.x, _position.y) * _speed, ForceMode2D.Force);
         float step = _speed * Time.deltaTime;
         Vector2 newPos = (Vector2)transform.position + _position;
         transform.position = Vector2.MoveTowards(transform.position, newPos, step);
 
+    }
+
+    public void OpenAndCloseInventory()
+    {
+        _inventoryDisplayScript.SetInventoryRef(_playerInventory);
+        _inventoryDisplay.SetActive(!_inventoryDisplay.activeSelf);
     }
 }
