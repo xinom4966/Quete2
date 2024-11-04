@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sc_InventoryTile : MonoBehaviour
+public class Sc_InventoryTile
 {
-    private List<MonoBehaviour> objects = new List<MonoBehaviour>();
+    private List<Sc_InventoryItem> objects;
+
+    public Sc_InventoryTile()
+    {
+        objects = new List<Sc_InventoryItem>();
+    }
 
     public bool IsEmpty()
     {
         return objects.Count == 0;
     }
 
-    public void AddObject(MonoBehaviour p_obj)
+    public void AddObject(Sc_InventoryItem p_obj)
     {
         objects.Add(p_obj);
     }

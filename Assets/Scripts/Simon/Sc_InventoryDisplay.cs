@@ -7,6 +7,7 @@ public class Sc_InventoryDisplay : MonoBehaviour
     private Sc_Inventory _inventoryRef;
     [SerializeField] private GameObject _inventoryDisplayTilePrefab;
     private GameObject _inventoryDisplayTile;
+    private List<GameObject> _tileList = new List<GameObject>();
 
     private void OnEnable()
     {
@@ -14,9 +15,22 @@ public class Sc_InventoryDisplay : MonoBehaviour
         {
             for (int j = 0; j < _inventoryRef.storageGrid[i].Count; j++)
             {
-                _inventoryDisplayTile = Instantiate(_inventoryDisplayTilePrefab);
+                _inventoryDisplayTile = Instantiate(_inventoryDisplayTilePrefab, this.transform);
+                _tileList.Add(_inventoryDisplayTile);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject tile in _tileList)
+        {
+            if (tile != null)
+            {
+                Destroy(tile);
+            }
+        }
+        _tileList.Clear();
     }
 
     public void SetInventoryRef(Sc_Inventory p_inventory)

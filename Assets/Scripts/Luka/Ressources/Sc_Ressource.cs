@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sc_Ressource : MonoBehaviour
+public class Sc_Ressource : Sc_InventoryItem
 {
     [SerializeField] protected string _ressourceName;
     [SerializeField] protected int _ressourceId;

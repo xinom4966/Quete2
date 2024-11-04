@@ -16,7 +16,7 @@ public class Sc_PlayerMouvement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerInventory = new Sc_Inventory(_inventorySizeX, _inventorySizeY);
-        _inventoryDisplayScript = _inventoryDisplay.GetComponent<Sc_InventoryDisplay>();
+        _inventoryDisplayScript = _inventoryDisplay.GetComponentInChildren<Sc_InventoryDisplay>();
     }
 
     private void Update()

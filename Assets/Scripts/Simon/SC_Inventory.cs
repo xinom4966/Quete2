@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Sc_Inventory
 {
-    public List<List<Sc_InventoryTile>> storageGrid;
+    public List<List<Sc_InventoryTile>> storageGrid = new List<List<Sc_InventoryTile>>();
 
     public Sc_Inventory(int p_sizeX, int p_sizeY)
     {
@@ -14,16 +14,17 @@ public class Sc_Inventory
     {
         for (int i = 0; i < p_sizeLines; i++)
         {
-            //storageGrid.Add(new());
+            storageGrid.Add(new List<Sc_InventoryTile>());
             for (int j = 0; j < p_sizeColumns; j++)
             {
                 Sc_InventoryTile inventoryTile = new Sc_InventoryTile();
-                storageGrid[j].Add(inventoryTile);
+                storageGrid[i].Add(inventoryTile);
+                storageGrid[i][j] = inventoryTile;
             }
         }
     }
 
-    private void AddToStorage(MonoBehaviour p_objectToAdd)
+    private void AddToStorage(Sc_InventoryItem p_objectToAdd)
     {
         for (int i=0; i < storageGrid.Count; i++)
         {
