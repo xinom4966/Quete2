@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sc_Buildings : MonoBehaviour
+public class Sc_Buildings : Sc_InventoryItem
 {
     protected string _buildingName;
     protected int _buildingId;
