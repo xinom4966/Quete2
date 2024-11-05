@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,7 @@ public class Sc_InventoryDisplay : MonoBehaviour
     [SerializeField] private GameObject _inventoryDisplayTilePrefab;
     private GameObject _inventoryDisplayTile;
     private List<GameObject> _tileList = new List<GameObject>();
+    [SerializeField] private Sc_BuildingGridPlacer _buildingPlacer;
 
     private void OnEnable()
     {
@@ -16,6 +16,7 @@ public class Sc_InventoryDisplay : MonoBehaviour
             for (int j = 0; j < _inventoryRef.storageGrid[i].Count; j++)
             {
                 _inventoryDisplayTile = Instantiate(_inventoryDisplayTilePrefab, this.transform);
+                _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().SetGridPlacer( _buildingPlacer );
                 _tileList.Add(_inventoryDisplayTile);
             }
         }

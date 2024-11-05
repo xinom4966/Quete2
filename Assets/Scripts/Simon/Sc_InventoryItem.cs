@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Sc_InventoryItem : MonoBehaviour
 {
-    private bool isNull = false;
+    public Sprite sprite;
+    public GameObject prefab;
 
     public Sc_InventoryItem()
     {
