@@ -4,6 +4,7 @@ public class Sc_Buildings : Sc_InventoryItem
 {
     protected string _buildingName;
     protected int _buildingId;
+    public Sc_GridManager gridManager;
 
     protected virtual Sc_Ressource BurnMaterial()
     {

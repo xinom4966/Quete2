@@ -15,6 +15,7 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _validColor;
     [SerializeField] private Color _invalidColor;
+    [SerializeField] private Sc_Buildings _building;
     private Color _fixedColor;
     public bool hasValidPlacement;
     public bool isFixed;
@@ -80,5 +81,10 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
                 _spriteRenderer.color = _fixedColor;
                 break;
         }
+    }
+
+    public void SetBuildingGridManager(Sc_GridManager p_gridManager)
+    {
+        _building.gridManager = p_gridManager;
     }
 }

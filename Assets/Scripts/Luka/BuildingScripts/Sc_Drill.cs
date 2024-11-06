@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Sc_Drill : Sc_Buildings
 {
     protected override Sc_Ressource Extract()
