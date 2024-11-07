@@ -5,6 +5,16 @@ public class Sc_Buildings : Sc_InventoryItem
     protected string _buildingName;
     protected int _buildingId;
 
+    protected virtual void Start()
+    {
+        
+    }
+
+    protected virtual void Update()
+    {
+        
+    }
+
     protected virtual Sc_Ressource BurnMaterial()
     {
         return null;
