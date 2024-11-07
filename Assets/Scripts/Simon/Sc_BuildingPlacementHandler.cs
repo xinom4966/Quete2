@@ -16,6 +16,8 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     [SerializeField] private Color _validColor;
     [SerializeField] private Color _invalidColor;
     [SerializeField] private Sc_Buildings _building;
+    [SerializeField] private int _buildingInventorySizeX;
+    [SerializeField] private int _buildingInventorySizeY;
     private Color _fixedColor;
     public bool hasValidPlacement;
     public bool isFixed;
@@ -52,6 +54,8 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         {
             isFixed = true;
             hasValidPlacement = true;
+            _building.inventorySizeX = _buildingInventorySizeX;
+            _building.inventorySizeY = _buildingInventorySizeY;
         }
         else if (p_state == PlacementState.Valid)
         {

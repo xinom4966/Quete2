@@ -33,6 +33,11 @@ public class Sc_WalkerGenerator : MonoBehaviour
         InitializeGrid();
     }
 
+    public void SetGridManager(Sc_GridManager p_gridManager)
+    {
+        _gridManager = p_gridManager;
+    }
+
     void InitializeGrid()
     {
         _gridHandler = new Grid[_walkerWidth, _walkerHeight];
@@ -86,12 +91,15 @@ public class Sc_WalkerGenerator : MonoBehaviour
                 foreach (Sc_Walker currentWalker in _walkers)
                 {
                     Vector3Int currentPos = new Vector3Int((int)currentWalker.walkerPosition.x, (int)currentWalker.walkerPosition.y, 0);
+                    Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(transform.position);
 
                     if (_gridHandler[currentPos.x, currentPos.y] != Grid.COAL)
                     {
+                        Sc_Coal coal = new Sc_Coal();
                         _tileMap.SetTile(currentPos, _coal);
                         _tileCount++;
                         _gridHandler[currentPos.x, currentPos.y] = Grid.COAL;
+                        currentTile.SetEntity(coal);
                         hasCreatedFloor = true;
                     }
                 }

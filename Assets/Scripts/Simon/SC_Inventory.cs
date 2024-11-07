@@ -24,7 +24,7 @@ public class Sc_Inventory
         }
     }
 
-    private void AddToStorage(Sc_InventoryItem p_objectToAdd)
+    public void AddToStorage(Sc_InventoryItem p_objectToAdd)
     {
         for (int i=0; i < storageGrid.Count; i++)
         {
@@ -38,7 +38,7 @@ public class Sc_Inventory
         }
     }
 
-    private void RemoveFromStorage(int p_indLine, int p_indColumns, int p_quantityToRemove)
+    public void RemoveFromStorage(int p_indLine, int p_indColumns, int p_quantityToRemove)
     {
         storageGrid[p_indLine][p_indColumns].RemoveObjects(p_quantityToRemove);
     }

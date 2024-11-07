@@ -10,7 +10,6 @@ public class Sc_InventoryTile : MonoBehaviour
 
     public void TileAction()
     {
-        Debug.Log("OOIIAI");
         if (_objects.Count > 0)
         {
             _gridPlacer.SetBuildingPrefab(_objects[0].prefab);
