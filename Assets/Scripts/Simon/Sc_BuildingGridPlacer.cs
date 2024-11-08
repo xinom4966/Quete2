@@ -37,6 +37,7 @@ public class Sc_BuildingGridPlacer : Sc_BuildingPlacer
             {
                 Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
                 handler.SetBuildingGridManager(_gridManager);
+                handler.SetBuildingPlacer(this);
                 if (handler.hasValidPlacement)
                 {
                     handler.SetPlacementState(PlacementState.Fixed);

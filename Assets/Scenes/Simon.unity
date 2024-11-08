@@ -157,6 +157,7 @@ MonoBehaviour:
   _inventoryDisplay: {fileID: 1390024173}
   _inventorySizeX: 7
   _inventorySizeY: 3
+  _drillPrefab: {fileID: 1112414577436952004, guid: cbe7c54330411544380583b1d1903b6b, type: 3}
 --- !u!212 &343014413
 SpriteRenderer:
   m_ObjectHideFlags: 0

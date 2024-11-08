@@ -13,6 +13,11 @@ public class Sc_InventoryTile : MonoBehaviour
         if (_objects.Count > 0)
         {
             _gridPlacer.SetBuildingPrefab(_objects[0].prefab);
+            Debug.Log("used object");
+        }
+        else
+        {
+            Debug.Log("this slot is empty " + gameObject.name);
         }
     }
 
@@ -29,6 +34,7 @@ public class Sc_InventoryTile : MonoBehaviour
     public void AddObject(Sc_InventoryItem p_obj)
     {
         _objects.Add(p_obj);
+        Debug.Log("Added " +  p_obj + "to " + gameObject.name);
     }
 
     public bool RemoveObjects(int p_quantityToRemove)

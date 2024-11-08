@@ -22,6 +22,7 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     public bool hasValidPlacement;
     public bool isFixed;
     private int _obstacleNumber;
+    private Sc_BuildingGridPlacer _buildingPlacer;
 
     private void Awake()
     {
@@ -90,5 +91,15 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     public void SetBuildingGridManager(Sc_GridManager p_gridManager)
     {
         _building.gridManager = p_gridManager;
+    }
+
+    public void SetBuildingPlacer(Sc_BuildingGridPlacer p_buildingGridPlacer)
+    {
+        _buildingPlacer = p_buildingGridPlacer;
+    }
+
+    public Sc_BuildingGridPlacer GetBuildingPlacer()
+    {
+        return _buildingPlacer;
     }
 }

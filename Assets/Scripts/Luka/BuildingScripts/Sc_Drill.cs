@@ -40,7 +40,7 @@ public class Sc_Drill : Sc_Buildings
 
     public void SetUpDrill()
     {
-        _drillInventory = new Sc_Inventory(inventorySizeX, inventorySizeY);
+        _drillInventory = new Sc_Inventory(gameObject, inventorySizeX, inventorySizeY);
         _inventoryDisplayScript = _inventoryDisplay.GetComponentInChildren<Sc_InventoryDisplay>();
     }
 }
