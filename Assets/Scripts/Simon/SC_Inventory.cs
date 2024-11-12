@@ -36,7 +36,6 @@ public class Sc_Inventory
                 if (storageGrid[i][j].IsEmpty())
                 {
                     storageGrid[i][j].AddObject(p_objectToAdd);
-                    Debug.Log(p_objectToAdd);
                     return;
                 }
             }

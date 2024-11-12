@@ -7,7 +7,7 @@ public class Sc_InventoryDisplay : MonoBehaviour
     [SerializeField] private GameObject _inventoryDisplayTilePrefab;
     private GameObject _inventoryDisplayTile;
     private List<GameObject> _tileList = new List<GameObject>();
-    [SerializeField] private Sc_BuildingGridPlacer _buildingPlacer;
+    private Sc_BuildingGridPlacer _buildingPlacer;
 
     private void OnEnable()
     {
@@ -16,15 +16,9 @@ public class Sc_InventoryDisplay : MonoBehaviour
             for (int j = 0; j < _inventoryRef.storageGrid[i].Count; j++)
             {
                 _inventoryDisplayTile = Instantiate(_inventoryDisplayTilePrefab, this.transform);
-                if (_buildingPlacer == null)
-                {
-                    _buildingPlacer = GetComponentInParent<Sc_BuildingGridPlacer>(true);
-                    _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().SetGridPlacer(_buildingPlacer);
-                }
-                else
-                {
-                    _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().SetGridPlacer(_buildingPlacer);
-                }
+                _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().objects = _inventoryRef.storageGrid[i][j].objects;
+                _buildingPlacer = Sc_BuildingGridPlacer.Instance;
+                _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().SetGridPlacer(_buildingPlacer);
                 _tileList.Add(_inventoryDisplayTile);
             }
         }

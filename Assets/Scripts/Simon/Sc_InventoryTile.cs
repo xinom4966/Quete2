@@ -5,14 +5,14 @@ using UnityEngine.UI;
 public class Sc_InventoryTile : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    private List<Sc_InventoryItem> _objects;
+    public List<Sc_InventoryItem> objects;
     private Sc_BuildingGridPlacer _gridPlacer;
 
     public void TileAction()
     {
-        if (_objects.Count > 0)
+        if (objects.Count > 0)
         {
-            _gridPlacer.SetBuildingPrefab(_objects[0].prefab);
+            _gridPlacer.SetBuildingPrefab(objects[0].prefab);
             Debug.Log("used object");
         }
         else
@@ -23,36 +23,35 @@ public class Sc_InventoryTile : MonoBehaviour
 
     public Sc_InventoryTile()
     {
-        _objects = new List<Sc_InventoryItem>();
+        objects = new List<Sc_InventoryItem>();
     }
 
     public bool IsEmpty()
     {
-        return _objects.Count == 0;
+        return objects.Count == 0;
     }
 
     public void AddObject(Sc_InventoryItem p_obj)
     {
-        _objects.Add(p_obj);
-        Debug.Log("Added " +  p_obj + "to " + gameObject.name);
+        objects.Add(p_obj);
     }
 
     public bool RemoveObjects(int p_quantityToRemove)
     {
-        if (_objects.Count - p_quantityToRemove > 0)
+        if (objects.Count - p_quantityToRemove > 0)
         {
             return false;
         }
         for (int i = 0; i < p_quantityToRemove; i++)
         {
-            _objects.RemoveAt(_objects.Count);
+            objects.RemoveAt(objects.Count);
         }
         return true;
     }
 
     public void UpdateTileVisuals()
     {
-        _image.sprite = _objects[0].sprite;
+        _image.sprite = objects[0].sprite;
     }
 
     public void SetGridPlacer(Sc_BuildingGridPlacer p_gridPlacer)
