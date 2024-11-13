@@ -27,6 +27,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
     [SerializeField] private Tilemap _tileMap;
     [SerializeField] private Tile _coal;
     [SerializeField] private Tile _iron;
+    [SerializeField] private GameObject _coalPrefab;
 
     private void Start()
     {
@@ -95,7 +96,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
 
                     if (_gridHandler[currentPos.x, currentPos.y] != Grid.COAL)
                     {
-                        Sc_Coal coal = new Sc_Coal();
+                        Sc_Coal coal = _coalPrefab.GetComponent<Sc_Coal>();
                         _tileMap.SetTile(currentPos, _coal);
                         _tileCount++;
                         _gridHandler[currentPos.x, currentPos.y] = Grid.COAL;

@@ -108,6 +108,8 @@ MonoBehaviour:
   _inventoryDisplayScript: {fileID: 7911846844000263782}
   _inventoryDisplay: {fileID: 1667042402050621796}
   _buildingHandler: {fileID: 2027810653450384619}
+  _waitTimeBetweenExtractions: 5
+  _extractionSpeed: 1
 --- !u!114 &2027810653450384619
 MonoBehaviour:
   m_ObjectHideFlags: 0

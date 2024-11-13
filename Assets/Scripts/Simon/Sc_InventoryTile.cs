@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +13,16 @@ public class Sc_InventoryTile : MonoBehaviour
     {
         if (objects.Count > 0)
         {
-            _gridPlacer.SetBuildingPrefab(objects[0].prefab);
-            Debug.Log("used object");
+            if (objects[0] is Sc_Buildings)
+            {
+                _gridPlacer.SetBuildingPrefab(objects[0].prefab);
+                Debug.Log("used object");
+            }
+            else if (objects[0] is Sc_Ressource)
+            {
+                //Add ressource to player inventory
+                Debug.Log(objects[0] + " was added to inventory");
+            }
         }
         else
         {

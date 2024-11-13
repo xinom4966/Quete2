@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class Sc_Drill : Sc_Buildings
     private Sc_Inventory _drillInventory;
     [SerializeField] private GameObject _inventoryDisplay;
     [SerializeField] private Sc_BuildingPlacementHandler _buildingHandler;
+    [SerializeField] private float _waitTimeBetweenExtractions;
+    [SerializeField] private float _extractionSpeed;
+    private bool _isExtracting = false;
 
     private void Start()
     {
@@ -19,21 +23,35 @@ public class Sc_Drill : Sc_Buildings
     {
         if (_buildingHandler.isFixed)
         {
-            Extract();
+            TryExtracting();
         }
     }
 
-    protected override void Extract()
+    private void TryExtracting()
     {
+        if (!_isExtracting)
+        {
+            StartCoroutine(ExtractCoroutine());
+        }
+    }
+
+    IEnumerator ExtractCoroutine()
+    {
+        _isExtracting = true;
         _centerTile = gridManager.GetClosestTile(transform.position);
+        _neighbours.Add(_centerTile);
         _neighbours = gridManager.GetNeighbors(_centerTile);
         foreach (Sc_Tile<Sc_InventoryItem> tile in _neighbours)
         {
             if (tile.HasEntity())
             {
                 _drillInventory.AddToStorage(tile.GetEntity());
+                Debug.Log("adding: " + tile.GetEntity() + " to drill");
             }
+            yield return new WaitForSeconds(_extractionSpeed);
         }
+        yield return new WaitForSeconds(_waitTimeBetweenExtractions);
+        _isExtracting = false;
     }
 
     protected override bool DetectRessources()
@@ -45,12 +63,6 @@ public class Sc_Drill : Sc_Buildings
     {
         _inventoryDisplayScript.SetInventoryRef(_drillInventory);
         _inventoryDisplay.SetActive(!_inventoryDisplay.activeSelf);
-    }
-
-    public void SetUpDrill()
-    {
-        _drillInventory = new Sc_Inventory(gameObject, inventorySizeX, inventorySizeY);
-        //_inventoryDisplayScript = _inventoryDisplay.GetComponentInChildren<Sc_InventoryDisplay>();
     }
 
     private void OnMouseDown()
