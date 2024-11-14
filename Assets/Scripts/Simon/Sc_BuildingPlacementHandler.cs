@@ -15,10 +15,14 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _validColor;
     [SerializeField] private Color _invalidColor;
+    [SerializeField] private Sc_Buildings _building;
+    [SerializeField] private int _buildingInventorySizeX;
+    [SerializeField] private int _buildingInventorySizeY;
     private Color _fixedColor;
     public bool hasValidPlacement;
     public bool isFixed;
     private int _obstacleNumber;
+    private Sc_BuildingGridPlacer _buildingPlacer;
 
     private void Awake()
     {
@@ -51,6 +55,8 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         {
             isFixed = true;
             hasValidPlacement = true;
+            _building.inventorySizeX = _buildingInventorySizeX;
+            _building.inventorySizeY = _buildingInventorySizeY;
         }
         else if (p_state == PlacementState.Valid)
         {
@@ -80,5 +86,20 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
                 _spriteRenderer.color = _fixedColor;
                 break;
         }
+    }
+
+    public void SetBuildingGridManager(Sc_GridManager p_gridManager)
+    {
+        _building.gridManager = p_gridManager;
+    }
+
+    public void SetBuildingPlacer(Sc_BuildingGridPlacer p_buildingGridPlacer)
+    {
+        _buildingPlacer = p_buildingGridPlacer;
+    }
+
+    public Sc_BuildingGridPlacer GetBuildingPlacer()
+    {
+        return _buildingPlacer;
     }
 }

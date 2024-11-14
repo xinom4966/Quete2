@@ -157,6 +157,7 @@ MonoBehaviour:
   _inventoryDisplay: {fileID: 1390024173}
   _inventorySizeX: 7
   _inventorySizeY: 3
+  _drillPrefab: {fileID: 1112414577436952004, guid: cbe7c54330411544380583b1d1903b6b, type: 3}
 --- !u!212 &343014413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -660,7 +661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryDisplayTilePrefab: {fileID: 7106776922851051123, guid: 15d609e06f13eeb438e883e0dbab4ad1, type: 3}
-  _buildingPlacer: {fileID: 1756359435}
 --- !u!1 &1104148941
 GameObject:
   m_ObjectHideFlags: 0

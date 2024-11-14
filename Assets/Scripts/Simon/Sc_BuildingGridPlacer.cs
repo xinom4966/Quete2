@@ -4,6 +4,19 @@ using UnityEngine.EventSystems;
 public class Sc_BuildingGridPlacer : Sc_BuildingPlacer
 {
     [SerializeField] private Sc_GridManager _gridManager;
+    public static Sc_BuildingGridPlacer Instance;
+
+    private void Start()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     private void Update()
     {
@@ -36,6 +49,8 @@ public class Sc_BuildingGridPlacer : Sc_BuildingPlacer
             if (Input.GetMouseButtonDown(0))
             {
                 Sc_BuildingPlacementHandler handler = _toBuild.GetComponent<Sc_BuildingPlacementHandler>();
+                handler.SetBuildingGridManager(_gridManager);
+                handler.SetBuildingPlacer(this);
                 if (handler.hasValidPlacement)
                 {
                     handler.SetPlacementState(PlacementState.Fixed);

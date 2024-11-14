@@ -4,6 +4,9 @@ public class Sc_Buildings : Sc_InventoryItem
 {
     protected string _buildingName;
     protected int _buildingId;
+    [HideInInspector] public Sc_GridManager gridManager;
+    [HideInInspector] public int inventorySizeX;
+    [HideInInspector] public int inventorySizeY;
 
     protected virtual void Start()
     {
@@ -20,9 +23,9 @@ public class Sc_Buildings : Sc_InventoryItem
         return null;
     }
 
-    protected virtual Sc_Ressource Extract()
+    protected virtual void Extract()
     {
-        return null;
+        
     }
 
     protected virtual bool DetectRessources()
@@ -38,5 +41,10 @@ public class Sc_Buildings : Sc_InventoryItem
     protected virtual bool DetectBuilding()
     {
         return false;
+    }
+
+    protected virtual void Interact()
+    {
+
     }
 }

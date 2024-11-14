@@ -13,11 +13,20 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private Sc_Inventory _playerInventory;
     private Sc_InventoryDisplay _inventoryDisplayScript;
 
+    //This drill is only for debugging purposes !
+    [SerializeField] private GameObject _drillPrefab;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _playerInventory = new Sc_Inventory(_inventorySizeX, _inventorySizeY);
         _inventoryDisplayScript = _inventoryDisplay.GetComponentInChildren<Sc_InventoryDisplay>();
+        _playerInventory = new Sc_Inventory(_inventoryDisplayScript.gameObject, _inventorySizeX, _inventorySizeY);
+    }
+
+    //This start is only for debugging purposes at the moment !
+    private void Start()
+    {
+        _playerInventory.AddToStorage(_drillPrefab.GetComponent<Sc_Drill>());
     }
 
     private void Update()

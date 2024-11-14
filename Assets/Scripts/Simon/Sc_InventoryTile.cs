@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,49 +6,61 @@ using UnityEngine.UI;
 public class Sc_InventoryTile : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    private List<Sc_InventoryItem> _objects;
+    public List<Sc_InventoryItem> objects;
     private Sc_BuildingGridPlacer _gridPlacer;
 
     public void TileAction()
     {
-        Debug.Log("OOIIAI");
-        if (_objects.Count > 0)
+        if (objects.Count > 0)
         {
-            _gridPlacer.SetBuildingPrefab(_objects[0].prefab);
+            if (objects[0] is Sc_Buildings)
+            {
+                _gridPlacer.SetBuildingPrefab(objects[0].prefab);
+                Debug.Log("used object");
+            }
+            else if (objects[0] is Sc_Ressource)
+            {
+                //Add ressource to player inventory
+                Debug.Log(objects[0] + " was added to inventory");
+            }
+        }
+        else
+        {
+            Debug.Log("this slot is empty " + gameObject.name);
         }
     }
 
     public Sc_InventoryTile()
     {
-        _objects = new List<Sc_InventoryItem>();
+        objects = new List<Sc_InventoryItem>();
     }
 
     public bool IsEmpty()
     {
-        return _objects.Count == 0;
+        return objects.Count == 0;
     }
 
     public void AddObject(Sc_InventoryItem p_obj)
     {
-        _objects.Add(p_obj);
+        objects.Add(p_obj);
     }
 
     public bool RemoveObjects(int p_quantityToRemove)
     {
-        if (_objects.Count - p_quantityToRemove > 0)
+        if (objects.Count - p_quantityToRemove > 0)
         {
             return false;
         }
         for (int i = 0; i < p_quantityToRemove; i++)
         {
-            _objects.RemoveAt(_objects.Count);
+            objects.RemoveAt(objects.Count);
         }
         return true;
     }
 
     public void UpdateTileVisuals()
     {
-        _image.sprite = _objects[0].sprite;
+        _image.sprite = objects[0].sprite;
     }
 
     public void SetGridPlacer(Sc_BuildingGridPlacer p_gridPlacer)

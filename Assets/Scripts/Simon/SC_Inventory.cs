@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sc_Inventory
 {
     public List<List<Sc_InventoryTile>> storageGrid = new List<List<Sc_InventoryTile>>();
+    public GameObject inventoryContainer;
 
-    public Sc_Inventory(int p_sizeX, int p_sizeY)
+    public Sc_Inventory(GameObject p_inventoryContainer, int p_sizeX, int p_sizeY)
     {
+        inventoryContainer = p_inventoryContainer;
         CreateStorageGrid(p_sizeX, p_sizeY);
     }
 
@@ -17,14 +20,14 @@ public class Sc_Inventory
             storageGrid.Add(new List<Sc_InventoryTile>());
             for (int j = 0; j < p_sizeColumns; j++)
             {
-                Sc_InventoryTile inventoryTile = new Sc_InventoryTile();
+                Sc_InventoryTile inventoryTile = inventoryContainer.AddComponent<Sc_InventoryTile>();
                 storageGrid[i].Add(inventoryTile);
                 storageGrid[i][j] = inventoryTile;
             }
         }
     }
 
-    private void AddToStorage(Sc_InventoryItem p_objectToAdd)
+    public void AddToStorage(Sc_InventoryItem p_objectToAdd)
     {
         for (int i=0; i < storageGrid.Count; i++)
         {
@@ -33,12 +36,13 @@ public class Sc_Inventory
                 if (storageGrid[i][j].IsEmpty())
                 {
                     storageGrid[i][j].AddObject(p_objectToAdd);
+                    return;
                 }
             }
         }
     }
 
-    private void RemoveFromStorage(int p_indLine, int p_indColumns, int p_quantityToRemove)
+    public void RemoveFromStorage(int p_indLine, int p_indColumns, int p_quantityToRemove)
     {
         storageGrid[p_indLine][p_indColumns].RemoveObjects(p_quantityToRemove);
     }

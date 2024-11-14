@@ -4,7 +4,7 @@ public class Sc_Tile<T> where T : class
 {
     public Vector2 pos { get; private set; } = Vector2.zero;
     public (int, int) gridPos;
-    public T entity;
+    private T entity;
 
     public Sc_Tile(Vector2 p_pos, (int, int) p_gridPos)
     {
@@ -12,7 +12,7 @@ public class Sc_Tile<T> where T : class
         this.gridPos = p_gridPos;
     }
 
-    private void SetEntity(T p_entity)
+    public void SetEntity(T p_entity)
     {
         if (!HasEntity())
         {
@@ -20,13 +20,22 @@ public class Sc_Tile<T> where T : class
         }
     }
 
-    private void DeleteEntity(T p_entity)
+    public void DeleteEntity(T p_entity)
     {
         this.entity = null;
     }
 
-    private bool HasEntity()
+    public bool HasEntity()
     {
         return (entity != null);
+    }
+
+    public T GetEntity()
+    {
+        if (HasEntity())
+        {
+            return entity;
+        }
+        return null;
     }
 }
