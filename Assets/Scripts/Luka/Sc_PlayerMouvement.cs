@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Sc_PlayerMouvement : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private void Update()
     {
         Move();
+        Interact();
     }
 
     public void Mouvement(InputAction.CallbackContext p_ctx)
@@ -50,5 +52,10 @@ public class Sc_PlayerMouvement : MonoBehaviour
     {
         _inventoryDisplayScript.SetInventoryRef(_playerInventory);
         _inventoryDisplay.SetActive(!_inventoryDisplay.activeSelf);
+    }
+
+    private void Interact()
+    {
+
     }
 }
