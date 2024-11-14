@@ -14,7 +14,7 @@ public class Sc_Drill : Sc_Buildings
     [SerializeField] private float _extractionSpeed;
     private bool _isExtracting = false;
 
-    private void Start()
+    protected override void Start()
     {
         _drillInventory = new Sc_Inventory(gameObject, 1, 1);
     }
@@ -39,10 +39,12 @@ public class Sc_Drill : Sc_Buildings
     {
         _isExtracting = true;
         _centerTile = gridManager.GetClosestTile(transform.position);
+        Debug.Log("1 " + _centerTile.HasEntity());
         _neighbours.Add(_centerTile);
         _neighbours = gridManager.GetNeighbors(_centerTile);
         foreach (Sc_Tile<Sc_InventoryItem> tile in _neighbours)
         {
+            Debug.Log("2");
             if (tile.HasEntity())
             {
                 _drillInventory.AddToStorage(tile.GetEntity());
@@ -51,6 +53,7 @@ public class Sc_Drill : Sc_Buildings
             yield return new WaitForSeconds(_extractionSpeed);
         }
         yield return new WaitForSeconds(_waitTimeBetweenExtractions);
+        Debug.Log("3");
         _isExtracting = false;
     }
 
