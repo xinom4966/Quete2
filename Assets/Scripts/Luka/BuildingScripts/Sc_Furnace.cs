@@ -1,7 +1,24 @@
-public class Sc_Furnace : Sc_Buildings
+using System.Data.SqlTypes;
+using UnityEngine;
+
+public class Sc_Furnace<T> : MonoBehaviour
 {
-    protected override Sc_Ressource BurnMaterial()
+    [HideInInspector] public Sc_InventoryTile<T> fuelSlot;
+    [HideInInspector] public Sc_InventoryTile<T> smeltingSlot;
+    [HideInInspector] public Sc_InventoryTile<T> outcomeSlot;
+
+    public bool isOn;
+
+    private void Start()
     {
-        return null;
+
+    }
+
+    private void Update()
+    {
+        if (fuelSlot != null)
+        {
+
+        }
     }
 }
