@@ -39,7 +39,7 @@ public class Sc_Drill : Sc_Buildings
     {
         _isExtracting = true;
         _centerTile = gridManager.GetClosestTile(transform.position);
-        Debug.Log("1 " + _centerTile.HasEntity());
+        Debug.Log("drill: " + _centerTile.gridPos + " " + _centerTile.HasEntity());
         _neighbours.Add(_centerTile);
         _neighbours = gridManager.GetNeighbors(_centerTile);
         foreach (Sc_Tile<Sc_InventoryItem> tile in _neighbours)

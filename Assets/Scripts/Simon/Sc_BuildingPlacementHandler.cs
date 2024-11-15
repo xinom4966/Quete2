@@ -29,7 +29,10 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         hasValidPlacement = true;
         isFixed = true;
         _obstacleNumber = 0;
-        _fixedColor = _spriteRenderer.color;
+        if (_spriteRenderer != null)
+        {
+            _fixedColor = _spriteRenderer.color;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,16 +77,20 @@ public class Sc_BuildingPlacementHandler : MonoBehaviour
         switch (p_state)
         {
             case PlacementState.Fixed:
-                _spriteRenderer.color = _fixedColor;
+                if (_spriteRenderer != null)
+                    _spriteRenderer.color = _fixedColor;
                 break;
             case PlacementState.Valid:
-                _spriteRenderer.color = _validColor;
+                if (_spriteRenderer != null)
+                    _spriteRenderer.color = _validColor;
                 break;
             case PlacementState.Invalid:
-                _spriteRenderer.color = _invalidColor;
+                if (_spriteRenderer != null)
+                    _spriteRenderer.color = _invalidColor;
                 break;
             default:
-                _spriteRenderer.color = _fixedColor;
+                if (_spriteRenderer != null)
+                    _spriteRenderer.color = _fixedColor;
                 break;
         }
     }

@@ -93,7 +93,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
                 foreach (Sc_Walker currentWalker in _walkers)
                 {
                     Vector3Int currentPos = new Vector3Int((int)currentWalker.walkerPosition.x, (int)currentWalker.walkerPosition.y, 0);
-                    Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(currentPos);
+                    Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(currentWalker.walkerPosition);
 
                     if (_gridHandler[currentPos.x, currentPos.y] != Grid.COAL)
                     {
@@ -102,6 +102,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
                         _tileCount++;
                         _gridHandler[currentPos.x, currentPos.y] = Grid.COAL;
                         currentTile.SetEntity(coal);
+                        Debug.Log("walker: " + currentTile.gridPos + " " + currentTile.HasEntity());
                         hasCreatedFloor = true;
                     }
                 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sc_ConveyorBelt : MonoBehaviour
+public class Sc_ConveyorBelt : Sc_Buildings
 {
     [System.Serializable]
 

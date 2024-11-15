@@ -1,7 +1,7 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 
-public class Sc_Furnace : MonoBehaviour
+public class Sc_Furnace : Sc_Buildings
 {
     [HideInInspector] public Sc_InventoryTile fuelSlot;
     [HideInInspector] public Sc_InventoryTile smeltingSlot;
@@ -9,12 +9,12 @@ public class Sc_Furnace : MonoBehaviour
 
     public bool isOn;
 
-    private void Start()
+    protected override void Start()
     {
 
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (fuelSlot != null)
         {
