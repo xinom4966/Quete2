@@ -1,11 +1,11 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 
-public class Sc_Furnace<T> : MonoBehaviour
+public class Sc_Furnace : MonoBehaviour
 {
-    [HideInInspector] public Sc_InventoryTile<T> fuelSlot;
-    [HideInInspector] public Sc_InventoryTile<T> smeltingSlot;
-    [HideInInspector] public Sc_InventoryTile<T> outcomeSlot;
+    [HideInInspector] public Sc_InventoryTile fuelSlot;
+    [HideInInspector] public Sc_InventoryTile smeltingSlot;
+    [HideInInspector] public Sc_InventoryTile outcomeSlot;
 
     public bool isOn;
 

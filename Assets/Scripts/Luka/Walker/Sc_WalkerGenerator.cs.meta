@@ -3,7 +3,12 @@ guid: d9797db69e47edf4c8010ad31a956f48
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _tileMap: {instanceID: 0}
+  - _coal: {instanceID: 0}
+  - _iron: {instanceID: 0}
+  - _coalPrefab: {instanceID: 0}
+  - _ironPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

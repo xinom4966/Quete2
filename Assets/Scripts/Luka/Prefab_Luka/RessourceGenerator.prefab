@@ -182,3 +182,4 @@ MonoBehaviour:
   _coal: {fileID: 11400000, guid: 2a59b2ae50824314f9df357b9159c756, type: 2}
   _iron: {fileID: 11400000, guid: c563d8ad949e6b3469edf1f15190605d, type: 2}
   _coalPrefab: {fileID: 4479856274594787730, guid: 458a8483cd8f29c4ca4cadf083475d9a, type: 3}
+  _ironPrefab: {fileID: 5332571817262520668, guid: 71617761e9d7b774ea561c49e75ebed1, type: 3}

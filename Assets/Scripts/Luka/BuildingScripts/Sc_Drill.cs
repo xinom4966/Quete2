@@ -14,7 +14,7 @@ public class Sc_Drill : Sc_Buildings
     [SerializeField] private float _extractionSpeed;
     private bool _isExtracting = false;
 
-    private void Start()
+    protected override void Start()
     {
         _drillInventory = new Sc_Inventory(gameObject, 1, 1);
     }
