@@ -1,6 +1,7 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 
+
 public class Sc_Furnace : Sc_Buildings
 {
     [HideInInspector] public Sc_InventoryTile fuelSlot;

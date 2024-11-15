@@ -18,16 +18,19 @@ public class Sc_WalkerGenerator : MonoBehaviour
 
     private int _walkerWidth = 10;
     private int _walkerHeight = 10;
-    private int _maxWalker = 5;
+    private int _maxWalker = 1;
     private int _tileCount = default;
+    private int _ressourcesAmount = 1;
 
-    private float _fillPercentage = 0.5f;
+    private float _fillPercentage = 0.4f;
     private float _waitTime = 0.05f;
 
     [SerializeField] private Tilemap _tileMap;
     [SerializeField] private Tile _coal;
     [SerializeField] private Tile _iron;
     [SerializeField] private GameObject _coalPrefab;
+    [SerializeField] private GameObject _ironPrefab;
+
 
     private void Start()
     {
@@ -44,7 +47,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
         _gridHandler = new Grid[_walkerWidth, _walkerHeight];
         _walkers = new List<Sc_Walker>();
 
-        for (int x = 0; x < _gridHandler.GetLength(0); x++)
+        for (int x = 0; x < _gridHandler.GetLength(0) ; x++)
         {
             for (int y = 0; y < _gridHandler.GetLength(1); y++)
             {
@@ -57,9 +60,14 @@ public class Sc_WalkerGenerator : MonoBehaviour
         Vector3Int WalkerGridCenter = new Vector3Int(_gridHandler.GetLength(0) / 2, _gridHandler.GetLength(1) / 2, 0);
 
         Sc_Walker currentWalker = new Sc_Walker(new Vector2(WalkerGridCenter.x, WalkerGridCenter.y), GetWalkerDirection(), 0.5f);
+
         _gridHandler[WalkerGridCenter.x, WalkerGridCenter.y] = Grid.COAL;
         Sc_Coal coal = _coalPrefab.GetComponent<Sc_Coal>();
         _tileMap.SetTile(WalkerGridCenter, _coal);
+
+        _gridHandler[WalkerGridCenter.x, WalkerGridCenter.y] = Grid.IRON;
+        _tileMap.SetTile(WalkerGridCenter, _iron);
+
         _walkers.Add(currentWalker);
 
         _tileCount++;
@@ -87,23 +95,41 @@ public class Sc_WalkerGenerator : MonoBehaviour
 
         IEnumerator CreateFloors()
         {
+            int randomRessource = Random.Range(0, _ressourcesAmount + 1);
+
             while ((float)_tileCount / (float)_gridHandler.Length < _fillPercentage)
             {
                 bool hasCreatedFloor = false;
+                
                 foreach (Sc_Walker currentWalker in _walkers)
                 {
                     Vector3Int currentPos = new Vector3Int((int)currentWalker.walkerPosition.x, (int)currentWalker.walkerPosition.y, 0);
                     Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(currentWalker.walkerPosition);
 
-                    if (_gridHandler[currentPos.x, currentPos.y] != Grid.COAL)
+                    if (randomRessource == 0)
                     {
-                        Sc_Coal coal = _coalPrefab.GetComponent<Sc_Coal>();
-                        _tileMap.SetTile(currentPos, _coal);
-                        _tileCount++;
-                        _gridHandler[currentPos.x, currentPos.y] = Grid.COAL;
-                        currentTile.SetEntity(coal);
-                        Debug.Log("walker: " + currentTile.gridPos + " " + currentTile.HasEntity());
-                        hasCreatedFloor = true;
+                        if (_gridHandler[currentPos.x, currentPos.y] != Grid.COAL)
+                        {
+                            Sc_Coal coal = _coalPrefab.GetComponent<Sc_Coal>();
+                            _tileMap.SetTile(currentPos, _coal);
+                            _tileCount++;
+                            _gridHandler[currentPos.x, currentPos.y] = Grid.COAL;
+                            currentTile.SetEntity(coal);
+                            hasCreatedFloor = true;
+                        }
+                    }
+
+                    else if (randomRessource == 1)
+                    {
+                        if (_gridHandler[currentPos.x, currentPos.y] != Grid.IRON)
+                        {
+                            Sc_Iron iron = _ironPrefab.GetComponent<Sc_Iron>();
+                            _tileMap.SetTile(currentPos, _iron);
+                            _tileCount++;
+                            _gridHandler[currentPos.x, currentPos.y] = Grid.IRON;
+                            currentTile.SetEntity(iron);
+                            hasCreatedFloor = true;
+                        }
                     }
                 }
 
