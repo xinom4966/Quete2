@@ -13,8 +13,10 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private Sc_Inventory _playerInventory;
     private Sc_InventoryDisplay _inventoryDisplayScript;
 
-    //This drill is only for debugging purposes !
+    //These items are only for debugging purposes !
     [SerializeField] private GameObject _drillPrefab;
+    [SerializeField] private GameObject _conveyorBeltPrefab;
+    [SerializeField] private GameObject _FurnacePrefab;
 
     private void Awake()
     {
@@ -27,6 +29,8 @@ public class Sc_PlayerMouvement : MonoBehaviour
     private void Start()
     {
         _playerInventory.AddToStorage(_drillPrefab.GetComponent<Sc_Drill>());
+        _playerInventory.AddToStorage(_conveyorBeltPrefab.GetComponent<Sc_ConveyorBelt>());
+        _playerInventory.AddToStorage(_FurnacePrefab.GetComponent<Sc_Furnace>());
     }
 
     private void Update()

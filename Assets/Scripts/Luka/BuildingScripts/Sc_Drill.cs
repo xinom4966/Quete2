@@ -39,10 +39,12 @@ public class Sc_Drill : Sc_Buildings
     {
         _isExtracting = true;
         _centerTile = gridManager.GetClosestTile(transform.position);
+        Debug.Log("drill: " + _centerTile.gridPos + " " + _centerTile.HasEntity());
         _neighbours.Add(_centerTile);
         _neighbours = gridManager.GetNeighbors(_centerTile);
         foreach (Sc_Tile<Sc_InventoryItem> tile in _neighbours)
         {
+            Debug.Log("2");
             if (tile.HasEntity())
             {
                 _drillInventory.AddToStorage(tile.GetEntity());
@@ -51,6 +53,7 @@ public class Sc_Drill : Sc_Buildings
             yield return new WaitForSeconds(_extractionSpeed);
         }
         yield return new WaitForSeconds(_waitTimeBetweenExtractions);
+        Debug.Log("3");
         _isExtracting = false;
     }
 

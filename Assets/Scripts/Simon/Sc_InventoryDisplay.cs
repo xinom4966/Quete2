@@ -17,6 +17,7 @@ public class Sc_InventoryDisplay : MonoBehaviour
             {
                 _inventoryDisplayTile = Instantiate(_inventoryDisplayTilePrefab, this.transform);
                 _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().objects = _inventoryRef.storageGrid[i][j].objects;
+                _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().UpdateTileVisuals();
                 _buildingPlacer = Sc_BuildingGridPlacer.Instance;
                 _inventoryDisplayTile.GetComponent<Sc_InventoryTile>().SetGridPlacer(_buildingPlacer);
                 _tileList.Add(_inventoryDisplayTile);

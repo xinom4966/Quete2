@@ -60,7 +60,10 @@ public class Sc_InventoryTile : MonoBehaviour
 
     public void UpdateTileVisuals()
     {
-        _image.sprite = objects[0].sprite;
+        if (objects.Count > 0)
+        {
+            _image.sprite = objects[0].sprite;
+        }
     }
 
     public void SetGridPlacer(Sc_BuildingGridPlacer p_gridPlacer)

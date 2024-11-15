@@ -62,6 +62,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
         Sc_Walker currentWalker = new Sc_Walker(new Vector2(WalkerGridCenter.x, WalkerGridCenter.y), GetWalkerDirection(), 0.5f);
 
         _gridHandler[WalkerGridCenter.x, WalkerGridCenter.y] = Grid.COAL;
+        Sc_Coal coal = _coalPrefab.GetComponent<Sc_Coal>();
         _tileMap.SetTile(WalkerGridCenter, _coal);
 
         _gridHandler[WalkerGridCenter.x, WalkerGridCenter.y] = Grid.IRON;
@@ -103,7 +104,7 @@ public class Sc_WalkerGenerator : MonoBehaviour
                 foreach (Sc_Walker currentWalker in _walkers)
                 {
                     Vector3Int currentPos = new Vector3Int((int)currentWalker.walkerPosition.x, (int)currentWalker.walkerPosition.y, 0);
-                    Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(transform.position);
+                    Sc_Tile<Sc_InventoryItem> currentTile = _gridManager.GetClosestTile(currentWalker.walkerPosition);
 
                     if (randomRessource == 0)
                     {
